@@ -10,8 +10,7 @@
     "preview": "vite preview",
     "server": "node server/index.js",
     "server:dev": "nodemon server/index.js",
-    "start": "node server/index.js",
-    "postinstall": "npm run build"
+    "start": "node server/index.js"
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.30.0",
