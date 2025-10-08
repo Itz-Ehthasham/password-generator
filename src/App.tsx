@@ -9,8 +9,21 @@ import { motion } from 'framer-motion';
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
+console.log('Environment check:', {
+  clerkKey: clerkPubKey ? 'Present' : 'Missing',
+  apiUrl: import.meta.env.VITE_API_URL || 'Not set'
+});
+
 if (!clerkPubKey) {
-  throw new Error('Missing Publishable Key');
+  console.error('Missing VITE_CLERK_PUBLISHABLE_KEY environment variable');
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+      <div className="text-white text-center">
+        <h1 className="text-2xl font-bold mb-4">Configuration Error</h1>
+        <p>Missing Clerk configuration. Please check environment variables.</p>
+      </div>
+    </div>
+  );
 }
 
 function AppContent() {
