@@ -14,18 +14,6 @@ console.log('Environment check:', {
   apiUrl: import.meta.env.VITE_API_URL || 'Not set'
 });
 
-if (!clerkPubKey) {
-  console.error('Missing VITE_CLERK_PUBLISHABLE_KEY environment variable');
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-      <div className="text-white text-center">
-        <h1 className="text-2xl font-bold mb-4">Configuration Error</h1>
-        <p>Missing Clerk configuration. Please check environment variables.</p>
-      </div>
-    </div>
-  );
-}
-
 function AppContent() {
   const { isLoaded, isSignedIn } = useAuthContext();
   const location = useLocation();
@@ -52,6 +40,17 @@ function AppContent() {
 }
 
 function App() {
+  if (!clerkPubKey) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+        <div className="text-white text-center">
+          <h1 className="text-2xl font-bold mb-4">Configuration Error</h1>
+          <p>Missing Clerk configuration. Please check environment variables.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <ClerkProvider 
       publishableKey={clerkPubKey}
