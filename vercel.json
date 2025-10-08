@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build",
+  "installCommand": "npm install && chmod +x node_modules/.bin/*",
   "rewrites": [
     {
       "source": "/(.*)",
