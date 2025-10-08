@@ -1,4 +1,4 @@
-# 🔐 Random Password Generator & Vault
+# 🔐 Random Password Generator & Vault [Active Link](https://password-generator-gamma-blond-24.vercel.app/)
 
 A modern, privacy-first password generator and vault application built with React, TypeScript, and MongoDB. Generate strong passwords and securely store them with client-side encryption.
 
