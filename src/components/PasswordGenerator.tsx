@@ -28,19 +28,20 @@ export const PasswordGenerator = () => {
   const [passwordHistory, setPasswordHistory] = useState<PasswordHistory[]>([]);
 
   useEffect(() => {
-    const loadPasswordHistory = async () => {
-      try {
-        const history = await getPasswordHistory(user.id);
-        setPasswordHistory(history);
-      } catch (error) {
-        console.error('Failed to load password history:', error);
-      }
-    };
-
     if (activeTab === 'history' && user) {
       loadPasswordHistory();
     }
   }, [activeTab, user]);
+
+  const loadPasswordHistory = async () => {
+    if (!user) return;
+    try {
+      const history = await getPasswordHistory(user.id);
+      setPasswordHistory(history);
+    } catch (error) {
+      console.error('Failed to load password history:', error);
+    }
+  };
 
   const handleGenerate = async () => {
     setGenerating(true);
@@ -53,6 +54,8 @@ export const PasswordGenerator = () => {
     if (isSignedIn && user) {
       try {
         await savePassword(user.id, newPassword);
+        // Refresh history after saving
+        await loadPasswordHistory();
       } catch (error) {
         console.error('Failed to save password:', error);
       }
