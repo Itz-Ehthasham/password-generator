@@ -14,10 +14,7 @@ app.use(cors({
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.mongoURI || 'mongodb://localhost:27017/passwordgen', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(process.env.mongoURI || 'mongodb://localhost:27017/passwordgen');
 
 // Password Schema
 const passwordSchema = new mongoose.Schema({
@@ -65,10 +62,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'Password Generator API is running!' });
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 module.exports = app;
