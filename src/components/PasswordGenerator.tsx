@@ -45,7 +45,7 @@ export const PasswordGenerator = () => {
 
   const handleGenerate = async () => {
     setGenerating(true);
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
     const newPassword = generatePassword(options);
     setPassword(newPassword);
